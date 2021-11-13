@@ -28,6 +28,11 @@ import StoreProduct from './components/product/create.vue'
 import ProductList from './components/product/index.vue'
 import EditProduct from './components/product/edit.vue'
 
+//customer component
+import StoreCustomer from './components/customer/create.vue'
+import CustomerList from './components/customer/index.vue'
+import EditCustomer from './components/customer/edit.vue'
+
 
 export const routes = [
     { path: '/', component: login, name:'/' },
@@ -56,5 +61,10 @@ export const routes = [
     { path: '/store-product', component: StoreProduct, name:'StoreProduct' },
     { path: '/product', component: ProductList, name:'ProductList' },
     { path: '/edit-product/:id', component: EditProduct, name:'EditProduct' },
+
+    // customer route
+    { path: '/store-customer', component: StoreCustomer, name:'StoreCustomer' },
+    { path: '/customer', component: CustomerList, name:'CustomerList' },
+    { path: '/edit-customer/:id', component: EditCustomer, name:'EditCustomer' },
 
 ];

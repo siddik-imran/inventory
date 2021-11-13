@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{ asset('backend/img/logo/logo.png') }}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Admin - Dashboard</title>
 
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -29,13 +29,18 @@
                 <div class="sidebar-brand-icon">
                 <img src="{{ asset('backend/img/logo/logo2.png') }}">
                 </div>
-                <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+                <div class="sidebar-brand-text mx-3">Admin</div>
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
                 <router-link class="nav-link" to="/home">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></router-link>
+            </li>
+            <li class="nav-item bg-info">
+                <router-link class="nav-link" to="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>POS</span></router-link>
             </li>
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
@@ -80,6 +85,7 @@
                 </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
                 aria-expanded="true" aria-controls="collapseBootstrap3">
@@ -94,16 +100,29 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap4"
+                aria-expanded="true" aria-controls="collapseBootstrap4">
+                <i class="far fa-fw fa-window-maximize"></i>
+                <span>Customer</span>
+                </a>
+                <div id="collapseBootstrap4" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <router-link to="/store-customer" class="collapse-item">Add New</router-link>
+                    <router-link to="customer" class="collapse-item">All Customer</router-link>
+                </div>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
                 aria-controls="collapseTable">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span>
+                <span>Reports</span>
                 </a>
                 <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tables</h6>
-                    <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-                    <a class="collapse-item" href="datatables.html">DataTables</a>
+                    <a class="collapse-item" href="simple-tables.html">Report one</a>
+                    <a class="collapse-item" href="datatables.html">Report two</a>
                 </div>
                 </div>
             </li>
@@ -344,7 +363,7 @@
                     <!---Container Fluid-->
                 </div>
                 <!-- Footer -->
-                <footer class="sticky-footer bg-white">
+                <footer class="sticky-footer bg-white" >
                     <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>copyright &copy; 2021 - developed by
