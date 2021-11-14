@@ -33,6 +33,25 @@ import StoreCustomer from './components/customer/create.vue'
 import CustomerList from './components/customer/index.vue'
 import EditCustomer from './components/customer/edit.vue'
 
+//expense component
+import StoreExpense from './components/expense/create.vue'
+import ExpenseList from './components/expense/expense.vue'
+import EditExpense from './components/expense/edit.vue'
+
+//salary component
+import GivenSalary from './components/salary/all_employee.vue'
+import PaySalary from './components/salary/create.vue'
+import SalaryList from './components/salary/index.vue'
+import ViewSalary from './components/salary/view.vue'
+import EditSalary from './components/salary/edit.vue'
+
+//stock component
+import Stock from './components/product/stock.vue'
+import EditStock from './components/product/edit_stock.vue'
+
+//pos component
+import Pos from './components/pos/pointOfSale.vue'
+
 
 export const routes = [
     { path: '/', component: login, name:'/' },
@@ -66,5 +85,26 @@ export const routes = [
     { path: '/store-customer', component: StoreCustomer, name:'StoreCustomer' },
     { path: '/customer', component: CustomerList, name:'CustomerList' },
     { path: '/edit-customer/:id', component: EditCustomer, name:'EditCustomer' },
+
+    // expense route
+    { path: '/store-expense', component: StoreExpense, name:'StoreExpense' },
+    { path: '/expense', component: ExpenseList, name:'ExpenseList' },
+    { path: '/edit-expense/:id', component: EditExpense, name:'EditExpense' },
+
+    // salary route
+    { path: '/given-salary', component: GivenSalary, name:'GivenSalary' },
+    { path: '/pay-salary/:id', component: PaySalary, name:'PaySalary' },
+    { path: '/salary', component: SalaryList, name:'SalaryList' },
+    { path: '/view-salary/:id', component: ViewSalary, name:'ViewSalary' },
+    { path: '/edit-salary/:id', component: EditSalary, name:'EditSalary' },
+
+    // stock route
+    { path: '/stock', component: Stock, name:'Stock' },
+    { path: '/edit-stock/:id', component: EditStock, name:'EditStock' },
+
+    // stock route
+    { path: '/pos', component: Pos, name:'Pos' },
+
+
 
 ];
