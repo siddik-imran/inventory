@@ -124,6 +124,6 @@ export default {
     #em_photo{
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        border-radius: 5px;
     }
 </style>

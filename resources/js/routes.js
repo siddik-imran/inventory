@@ -52,6 +52,11 @@ import EditStock from './components/product/edit_stock.vue'
 //pos component
 import Pos from './components/pos/pointOfSale.vue'
 
+//order
+import Order from './components/order/order.vue'
+import ViewOrder from './components/order/view_order.vue'
+import SearchOrder from './components/order/search_order.vue'
+
 
 export const routes = [
     { path: '/', component: login, name:'/' },
@@ -104,6 +109,11 @@ export const routes = [
 
     // stock route
     { path: '/pos', component: Pos, name:'Pos' },
+
+    // order route
+    { path: '/latest-order', component: Order, name:'Order' },
+    { path: '/view-order/:id', component: ViewOrder, name:'ViewOrder' },
+    { path: '/search-order', component: SearchOrder, name:'SearchOrder' },
 
 
 

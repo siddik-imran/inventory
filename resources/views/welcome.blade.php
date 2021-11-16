@@ -126,6 +126,19 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap7"
+                aria-expanded="true" aria-controls="collapseBootstrap7">
+                <i class="far fa-fw fa-window-maximize"></i>
+                <span>Orders</span>
+                </a>
+                <div id="collapseBootstrap7" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <router-link to="/latest-order" class="collapse-item">Latest Order</router-link>
+                    <router-link to="/search-order" class="collapse-item">Search Order</router-link>
+                </div>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
                 aria-expanded="true" aria-controls="collapseBootstrap5">
                 <i class="far fa-fw fa-window-maximize"></i>

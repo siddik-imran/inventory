@@ -47,3 +47,20 @@ Route::post('/salary/update/{id}', 'Api\SalaryController@updateSalary');
 Route::post('/stock/update/{id}', 'Api\ProductController@stockUpdate');
 
 Route::get('/getting/product/{id}', 'Api\PosController@getProduct');
+
+//add to cart
+Route::get('/add-to-cart/{id}', 'Api\CartController@cart');
+Route::get('/cart/product', 'Api\CartController@cartProduct');
+Route::get('/remove-cart/{id}', 'Api\CartController@removeCartProduct');
+Route::get('/increment/{id}', 'Api\CartController@incrementCartItem');
+Route::get('/decrement/{id}', 'Api\CartController@decrementCartItem');
+
+// extra
+Route::get('/vat', 'Api\CartController@getVat');
+
+//order
+Route::post('/order', 'Api\PosController@order');
+Route::get('/orders', 'Api\OrderController@latestOrder');
+Route::get('/order/orders/{id}', 'Api\OrderController@viewOrder');
+Route::get('/order/order-details/{id}', 'Api\OrderController@orderDetails');
+Route::post('/search-order', 'Api\OrderController@search');

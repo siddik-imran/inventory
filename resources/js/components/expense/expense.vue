@@ -27,7 +27,7 @@
                       <tr v-for="expense in filterExpense" :key="expense.id">
                         <td>{{expense.expense_date}}</td>
                         <td>{{expense.amount}}</td>
-                        <td>{{expense.detils}}</td>
+                        <td>{{expense.details}}</td>
                         <td>
                             <router-link :to="{name: 'EditExpense', params: {id:expense.id}}" class="btn btn-sm btn-primary">Edit</router-link>
                             <button @click="deleteExpense(expense.id)" class="btn btn-sm btn-danger text-white">Delete</button>

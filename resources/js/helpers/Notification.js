@@ -9,6 +9,22 @@ class Notification{
             timeout:1000,
         }).show();
     }
+    cart_success(){
+        new Noty({
+            type: 'success',
+            layout: 'topRight',
+            text: 'Added to Cart !',
+            timeout:1000,
+        }).show();
+    }
+    cart_remove(){
+        new Noty({
+            type: 'success',
+            layout: 'topRight',
+            text: 'Remove from Cart !',
+            timeout:1000,
+        }).show();
+    }
 
     alert(){
         new Noty({
