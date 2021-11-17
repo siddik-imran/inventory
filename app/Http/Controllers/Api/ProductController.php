@@ -201,4 +201,10 @@ class ProductController extends Controller
         $product->product_quantity = $request->product_quantity;
         $product->update();
     }
+
+    public function stockoutProduct()
+    {
+        $product = Product::where('product_quantity' , '<', 1)->get();
+        return response()->json($product);
+    }
 }

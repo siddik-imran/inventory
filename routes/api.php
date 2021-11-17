@@ -68,3 +68,4 @@ Route::post('/search-order', 'Api\OrderController@search');
 // dashboard
 Route::get('/earning-statement', 'Api\OrderController@earningStatement');
 Route::get('/expense-statement', 'Api\OrderController@expenseStatement');
+Route::get('/stock-out-product', 'Api\ProductController@stockoutProduct');

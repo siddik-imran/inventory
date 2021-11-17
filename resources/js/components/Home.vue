@@ -54,8 +54,7 @@
                     <div class="text-xs font-weight-bold text-uppercase mb-1">Expense</div>
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" v-for="expense in expenses" :key="">${{expense.total_expenses}}</div>
                     <div class="mt-2 mb-0 text-muted text-xs">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                    <span>Since last month</span>
+
                     </div>
                 </div>
                 <div class="col-auto">
@@ -87,7 +86,7 @@
         </div>
 
         <!-- Invoice Example -->
-        <div class="col-xl-8 col-lg-7 mb-4">
+        <div class="col-xl-7 col-lg-7 mb-4">
             <div class="card">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
@@ -148,79 +147,34 @@
             </div>
         </div>
         <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
+        <div class="col-xl-5 col-lg-5">
             <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
-                <div class="dropdown no-arrow">
-                <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Month <i class="fas fa-chevron-down"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                    aria-labelledby="dropdownMenuLink">
-                    <div class="dropdown-header">Select Periode</div>
-                    <a class="dropdown-item" href="#">Today</a>
-                    <a class="dropdown-item" href="#">Week</a>
-                    <a class="dropdown-item active" href="#">Month</a>
-                    <a class="dropdown-item" href="#">This Year</a>
-                </div>
-                </div>
+                <h6 class="m-0 font-weight-bold text-primary">Stock Out Products</h6>
             </div>
-            <div class="card-body">
-                <div class="mb-3">
-                <div class="small text-gray-500">Oblong T-Shirt
-                    <div class="small float-right"><b>600 of 800 Items</b></div>
-                </div>
-                <div class="progress" style="height: 12px;">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-                <div class="mb-3">
-                <div class="small text-gray-500">Gundam 90'Editions
-                    <div class="small float-right"><b>500 of 800 Items</b></div>
-                </div>
-                <div class="progress" style="height: 12px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-                <div class="mb-3">
-                <div class="small text-gray-500">Rounded Hat
-                    <div class="small float-right"><b>455 of 800 Items</b></div>
-                </div>
-                <div class="progress" style="height: 12px;">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 55%" aria-valuenow="55"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-                <div class="mb-3">
-                <div class="small text-gray-500">Indomie Goreng
-                    <div class="small float-right"><b>400 of 800 Items</b></div>
-                </div>
-                <div class="progress" style="height: 12px;">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-                <div class="mb-3">
-                <div class="small text-gray-500">Remote Control Car Racing
-                    <div class="small float-right"><b>200 of 800 Items</b></div>
-                </div>
-                <div class="progress" style="height: 12px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-            </div>
-            <div class="card-footer text-center">
-                <a class="m-0 small text-primary card-link" href="#">View More <i
-                    class="fas fa-chevron-right"></i></a>
-            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="product in products" :key="product.id">
+                    <td>{{product.product_name}}</td>
+                    <td>{{product.product_code}}</td>
+                    <td><span class="badge badge-danger">Stock out</span></td>
+                    <td><router-link :to="{name: 'EditStock', params: {id:product.id}}" class="btn btn-sm btn-primary">Edit</router-link></td>
+                    </tr>
+
+                </tbody>
+                </table>
             </div>
         </div>
-
+        </div>
 
         </div>
         <!--Row-->
@@ -233,7 +187,8 @@ export default {
     data(){
         return {
             statements: [],
-            expenses: ''
+            expenses: '',
+            products: []
         }
     },
     created(){
@@ -242,6 +197,7 @@ export default {
         }
         this.earningStatement();
         this.expenseStatement();
+        this.stockOutProduct();
     },
     methods: {
         earningStatement(){
@@ -252,6 +208,12 @@ export default {
         expenseStatement(){
             axios.get('/api/expense-statement/')
             .then(({data}) => (this.expenses = data))
+            .catch(console.log('error'))
+        },
+        stockOutProduct()
+        {
+            axios.get('/api/stock-out-product/')
+            .then(({data}) => (this.products = data))
             .catch(console.log('error'))
         }
     },
