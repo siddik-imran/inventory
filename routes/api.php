@@ -64,3 +64,7 @@ Route::get('/orders', 'Api\OrderController@latestOrder');
 Route::get('/order/orders/{id}', 'Api\OrderController@viewOrder');
 Route::get('/order/order-details/{id}', 'Api\OrderController@orderDetails');
 Route::post('/search-order', 'Api\OrderController@search');
+
+// dashboard
+Route::get('/earning-statement', 'Api\OrderController@earningStatement');
+Route::get('/expense-statement', 'Api\OrderController@expenseStatement');
