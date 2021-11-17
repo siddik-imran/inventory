@@ -4819,10 +4819,7 @@ __webpack_require__.r(__webpack_exports__);
     this.allProduct();
     this.allCategory();
     this.allCustomer();
-    this.getCartProduct(); // Reload.$on('afterAddtoCart', () => {
-    //     this.getCartProduct()
-    // });
-
+    this.getCartProduct();
     this.getVat();
   },
   methods: {
@@ -4859,50 +4856,60 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {});
     },
     addToCart: function addToCart(id) {
+      var _this6 = this;
+
       axios.get('/api/add-to-cart/' + id).then(function () {
-        //Reload.$emit('afterAddToCart');
-        window.location.reload();
+        _this6.getCartProduct();
+
         Notification.cart_success();
       })["catch"](function (err) {});
     },
     getCartProduct: function getCartProduct() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get('/api/cart/product/').then(function (_ref5) {
         var data = _ref5.data;
-        return _this6.carts = data;
+        return _this7.carts = data;
       })["catch"](function (err) {});
     },
     removeItem: function removeItem(id) {
+      var _this8 = this;
+
       axios.get('/api/remove-cart/' + id).then(function () {
-        //Reload.$emit('afterAddToCart');
-        window.location.reload();
+        _this8.getCartProduct();
+
         Notification.cart_remove();
       })["catch"](function (err) {});
     },
     increment: function increment(id) {
+      var _this9 = this;
+
       axios.get('/api/increment/' + id).then(function () {
-        //Reload.$emit('afterAddToCart');
-        window.location.reload();
+        _this9.getCartProduct();
+
         Notification.success();
       })["catch"](function (err) {});
     },
     decrement: function decrement(id) {
+      var _this10 = this;
+
       axios.get('/api/decrement/' + id).then(function () {
-        //Reload.$emit('afterAddToCart');
-        window.location.reload();
+        _this10.getCartProduct();
+
         Notification.success();
       })["catch"](function (err) {});
     },
     getVat: function getVat() {
-      var _this7 = this;
+      var _this11 = this;
 
       axios.get('/api/vat/').then(function (_ref6) {
         var data = _ref6.data;
-        return _this7.vats = data;
+        return _this11.vats = data;
       })["catch"](function (err) {});
     },
     order: function order() {
+      var _this12 = this;
+
       var total = this.subTotal * 0.05 + this.subTotal;
       var data = {
         quantity: this.totalQuantity,
@@ -4916,7 +4923,10 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.post('/api/order/', data).then(function () {
         Notification.success();
-        window.location.reload();
+
+        _this12.getCartProduct();
+
+        _this12.customer_id = '', _this12.pay = '', _this12.due = '', _this12.payment_method = '';
       });
     }
   }
@@ -6720,8 +6730,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default().mixin({
   }
 });
 window.Toast = Toast; // Sweet alert end
-
-window.Reload = new vue__WEBPACK_IMPORTED_MODULE_0__["default"](); // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app',

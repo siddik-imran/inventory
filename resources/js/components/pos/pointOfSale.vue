@@ -209,9 +209,6 @@ export default {
         this.allCategory();
         this.allCustomer();
         this.getCartProduct();
-        // Reload.$on('afterAddtoCart', () => {
-        //     this.getCartProduct()
-        // });
         this.getVat();
     },
 
@@ -247,8 +244,7 @@ export default {
         addToCart(id){
             axios.get('/api/add-to-cart/'+id)
             .then(() => {
-                //Reload.$emit('afterAddToCart');
-                window.location.reload();
+                this.getCartProduct();
                 Notification.cart_success();
             })
             .catch((err) => {
@@ -265,8 +261,7 @@ export default {
         removeItem(id){
             axios.get('/api/remove-cart/'+id)
             .then(() => {
-                //Reload.$emit('afterAddToCart');
-                window.location.reload();
+                this.getCartProduct();
                 Notification.cart_remove();
             })
             .catch((err) => {
@@ -276,8 +271,7 @@ export default {
         increment(id){
             axios.get('/api/increment/'+id)
             .then(() => {
-                //Reload.$emit('afterAddToCart');
-                window.location.reload();
+                this.getCartProduct();
                 Notification.success();
             })
             .catch((err) => {
@@ -288,8 +282,7 @@ export default {
         decrement(id){
             axios.get('/api/decrement/'+id)
             .then(() => {
-                //Reload.$emit('afterAddToCart');
-                window.location.reload();
+                this.getCartProduct();
                 Notification.success();
             })
             .catch((err) => {
@@ -313,7 +306,11 @@ export default {
             axios.post('/api/order/', data)
             .then(() => {
                 Notification.success();
-                window.location.reload();
+                this.getCartProduct();
+                this.customer_id = '',
+                this.pay = '',
+                this.due = '',
+                this.payment_method = ''
             })
         }
 
